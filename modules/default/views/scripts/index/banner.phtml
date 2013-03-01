@@ -1,0 +1,68 @@
+
+	<body class="yui-skin-sam">
+		<div id="doc3" class="yui-t7"> 
+		   	<div id="hd"></div> 
+		   	<div id="bd"> 
+		    	<div id="banner" class="yui-g"> 
+				<div id="banner_left">
+					<a href="/"><img src="/images/mealLoopSmall.png" /></a>
+				</div>		    		
+				<div id="banner_right">
+					<?php
+						//do not display email and logout button if registering or otherwise not logged in
+						if(strcmp($this->action,"register") != 0 && $this->user_data != null && array_key_exists('email', $this->user_data)){
+							echo '<ul>';
+							echo '	<li>'.$this->escape($this->user_data['email']).'</li>';
+							echo '	<li><a href="'.$this->baseUrl.'/logout">logout</a></li>';
+							echo '</ul>';
+						}
+						else{
+							echo '<ul>';
+							echo '	<li><a href="'.$this->baseUrl.'/register">register</a></li>';
+							echo '	<li><a href="'.$this->baseUrl.'/login">login</a></li>';
+							echo '</ul>';
+						}
+					?>
+				</div>
+		   	</div>
+
+			<?php
+				//do not display navigation links if on register page or not logged in
+				if(strcmp($this->action,"register") != 0 && $this->user_data != null && array_key_exists('email', $this->user_data)){
+					
+					echo '<div id="navigation" class="yui-g"> ';
+					echo '	<ul>';
+					echo '		<li ><a id="home_nav" href="'.$this->baseUrl.'/main">Home</a></li>';
+					echo '		<li ><a id="community_nav" href="'.$this->baseUrl.'/community">Community</a></li>';
+					echo '		<li ><a id="add_nav" href="'.$this->baseUrl.'/add">Add Meal</a></li>';
+					echo '		<li ><a id="meals_nav" href="'.$this->baseUrl.'/community?user='.urlencode($this->user_data['id']).'">Meals</a></li>';
+					echo '		<li ><a id="shoppinglist_nav" href="'.$this->baseUrl.'/shoppinglist">Shopping List</a></li>';
+					echo '		<li ><a id="options_nav" href="'.$this->baseUrl.'/options">Options</a></li>';
+					echo '		<li ><a id="profile_nav" href="'.$this->baseUrl.'/profile">Profile</a></li>';
+					echo '	</ul>';
+
+			   		echo '</div>'; 
+				}
+				else{
+					echo '<div id="navigation" class="yui-g"> ';
+
+					echo '		<div id="main_heading_div">';
+					echo '			<h1 id="main_heading"><a href="'.$this->baseUrl.'/register">Get Started Now!</a></h1>';
+					echo '		</div>';
+					echo '		<div id="steps_div">';
+					echo '			<h4 id="step1">1. Add Your Meals</h4>';
+					echo '			<h4 id="step2">2. Choose Your Plan Options</h4>';
+					echo '			<h4 id="step3">3. Enjoy Your Plan -- Meals Picked Day to Day, Especially For You</h4>';
+					echo '		</div>';
+
+					echo '</div>';
+				
+				}
+
+
+			?>
+			
+			<!-- display help link -->
+			<div id="help_nav" class="yui-g">
+			<?php echo '<a id="a_help_nav" href="'.$this->baseUrl.'/help" target="_blank">Help</a>'; ?>
+			</div>

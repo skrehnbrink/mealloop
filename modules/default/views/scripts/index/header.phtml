@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Meal Loop - Meal Planning Made Easy</title>
+		
+		
+		
+		<link rel="stylesheet" href="/scripts/yui/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+		
+		<!-- Core + Skin CSS -->
+		<link rel="stylesheet" type="text/css" href="/scripts/yui/button/assets/skins/sam/button.css">
+		<!-- OPTIONAL: Menu Stylesheet (required for creating buttons of type "menu" and "split") -->
+		<link rel="stylesheet" type="text/css" href="/scripts/yui/menu/assets/skins/sam/menu.css">
+		
+		<!-- Dependencies -->
+		<script type="text/javascript" src="/scripts/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+		<script type="text/javascript" src="/scripts/yui/element/element-beta-min.js"></script>
+		
+		<!-- OPTIONAL: Menu and Container Core (required for creating buttons of type "menu" and "split") -->
+		<script type="text/javascript" src="/scripts/yui/container/container_core-min.js"></script>
+		<script type="text/javascript" src="/scripts/yui/menu/menu-min.js"></script>
+		
+		<!-- Source file -->
+		<script type="text/javascript" src="/scripts/yui/button/button-min.js"></script>
+		
+		<!-- Dependency --> 
+		<script type="text/javascript" src="/scripts/yui/yahoo/yahoo-min.js" ></script>
+
+		<!-- Event source file -->
+		<script type="text/javascript" src="/scripts/yui/event/event-min.js" ></script>
+		
+		<!-- Required for the Calendar control -->
+		<script type="text/javascript" src="/scripts/yui/yahoo/yahoo.js"></script>
+		<script type="text/javascript" src="/scripts/yui/event/event.js" ></script>
+		<script type="text/javascript" src="/scripts/yui/dom/dom.js" ></script>
+		<script type="text/javascript" src="/scripts/yui/calendar/calendar.js"></script>
+		<link type="text/css" rel="stylesheet" href="/scripts/yui/calendar/assets/skins/sam/calendar.css">
+	
+		<!-- Required for the tree control -->
+		<link type="text/css" rel="stylesheet" href="/scripts/yui/treeview/assets/skins/sam/treeview.css">
+		<!-- TreeView source file --> 
+		<script src = "/scripts/yui/treeview/treeview-min.js" ></script>
+
+		<!-- Required for AutoComplete -->
+		<!-- OPTIONAL: Get (required only if using Script Node DataSource) -->
+		<script type="text/javascript" src="/scripts/yui/get/get-beta-min.js"></script>
+		<!-- OPTIONAL: Connection (required only if using XHR DataSource) -->
+		<script type="text/javascript" src="/scripts/yui/connection/connection-min.js"></script>
+		<!-- OPTIONAL: Animation (required only if enabling animation) -->
+		<script type="text/javascript" src="/scripts/yui/animation/animation-min.js"></script>
+		<!-- OPTIONAL: JSON (enables JSON validation) -->
+		<script type="text/javascript" src="/scripts/yui/json/json-beta-min.js"></script>
+		<!-- Source file -->
+		<script type="text/javascript" src="/scripts/yui/autocomplete/autocomplete-min.js"></script>
+  
+   		<!-- scriptaculous -->
+		<script src="/scripts/scriptaculous/prototype.js" type="text/javascript"></script>
+		<script src="/scripts/scriptaculous/scriptaculous.js" type="text/javascript"></script>
+		
+		<!--  curvy corners -->
+		<script src="/scripts/curvycorners/rounded_corners.inc.js" type="text/javascript"></script>
+		
+
+		<?php
+
+			$s = strpos(strtoupper($_SERVER['HTTP_USER_AGENT']), "IE");
+			if($s > -1) echo '<link rel="stylesheet" href="/styles/main-ie.css" type="text/css">'."\n";
+			else echo '<link rel="stylesheet" href="/styles/main.css" type="text/css">'."\n";
+    	
+		?>

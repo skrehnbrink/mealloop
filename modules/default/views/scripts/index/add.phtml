@@ -1,0 +1,108 @@
+<?php include("header.phtml"); ?>
+			
+		<script type="text/javascript">
+
+			function init(){
+				document.getElementById("add_nav").style.color = "white";
+				document.getElementById("a_help_nav").href = "<?php echo $this->baseUrl; ?>/help#a_help_add_meal";
+				
+				var oSaveBTN = new YAHOO.widget.Button(
+			                        "submitBTN",  // Source element id
+			                        {
+										type: "button"
+									}
+			                    );
+				var oCancelBTN = new YAHOO.widget.Button(
+			                        "cancelBTN",  // Source element id
+			                        {
+										type: "push"
+									}
+			                    );
+	     
+				function onSaveBTNClick(e) { 
+	        		document.getElementById("meal_form").submit();
+	    		} 
+	    		oSaveBTN.addListener("click", onSaveBTNClick); 
+			                    
+			   <?php
+					// A JavaScript Array DataSource
+					if($this->ingredient_data != null){
+						$ingredient_arr = $this->ingredient_data;
+						if($ingredient_arr != null && count($ingredient_arr) > 0){
+							echo 'var ingredient_arr = ["'.$ingredient_arr[0].'"';
+							for($i=1; $i<count($ingredient_arr); $i++){
+								echo ', "'.$ingredient_arr[$i].'"';
+							}
+							echo '];'."\n";
+						}
+						echo 'var ingredientDataSource = new YAHOO.widget.DS_JSArray(ingredient_arr);'."\n";
+					}
+					
+					if($this->amount_data != null){
+						$amount_arr = $this->amount_data;
+						if($amount_arr != null && count($amount_arr) > 0){
+							echo 'var amount_arr = ["'.$amount_arr[0].'"';
+							for($i=1; $i<count($amount_arr); $i++){
+								echo ', "'.$amount_arr[$i].'"';
+							}
+							echo '];'."\n";
+						}
+						echo 'var amountDataSource = new YAHOO.widget.DS_JSArray(amount_arr);'."\n";
+					}
+					
+					$count = array();
+					$count[0] = 'one';
+					$count[1] = 'two';
+					$count[2] = 'three';
+					$count[3] = 'four';
+					$count[4] = 'five';
+					$count[5] = 'six';
+					$count[6] = 'seven';
+					$count[7] = 'eight';
+					$count[8] = 'nine';
+					$count[9] = 'ten';
+					$count[10] = 'eleven';
+					$count[11] = 'twelve';
+					$count[12] = 'thirteen';
+					$count[13] = 'fourteen';
+					$count[14] = 'fifteen';
+			
+					for($i=0; $i<15; $i++){
+						if($this->ingredient_data != null){
+							echo 'var ingredientAutoComplete = new YAHOO.widget.AutoComplete("'.$count[$i].'TF","'.$count[$i].'DIV", ingredientDataSource);'."\n";
+							//echo 'ingredientAutoComplete.typeAhead = true;';
+							echo 'ingredientAutoComplete.animSpeed = .2;';
+						}
+						if($this->amount_data != null){
+							echo 'var amountAutoComplete = new YAHOO.widget.AutoComplete("'.$count[$i].'AmtTF","'.$count[$i].'AmtDIV", amountDataSource);'."\n";
+							//echo 'amountAutoComplete.typeAhead = true;'."\n";
+							echo 'amountAutoComplete.animSpeed = .2;'."\n";
+						}
+					}
+				?>
+			}
+			
+			
+			YAHOO.util.Event.onDOMReady(init);
+
+		</script> 
+		
+	</head>
+	
+	<?php include("banner.phtml"); ?>
+
+				<div id="add" class="yui-g">
+					<div class="error">
+						<h3><?php echo $this->escape($this->errorMsg); ?></h3>
+					</div>
+					<fieldset id="addFS" class="titledborder">
+            					
+            					<?php 
+            						if($this->action == "edit") echo '<legend>Edit Meal (* Required Field)</legend>'."\n"; 
+            						else echo '<legend>Add Meal (* Required Field)</legend>'."\n";
+            					?> 
+								<?php echo $this->render($this->baseUrl.'/meal_form.phtml'); ?>
+					</fieldset>
+				</div>
+
+	<?php include("footer.phtml"); ?>

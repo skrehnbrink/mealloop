@@ -1,0 +1,876 @@
+/** Global **/
+
+html{
+	background: #D8D8D8;
+	
+}
+
+#introbd{
+	background: #D8D8D8;  	
+}
+
+body {
+	font-family: 'Trebuchet MS', 'Lucida Grande', 'Verdana', 'Arial', 'Sans-Serif';
+}
+
+body *{
+	font-family: 'Trebuchet MS', 'Lucida Grande', 'Verdana', 'Arial', 'Sans-Serif';
+}
+
+#custom-doc {
+	margin: 0 auto;
+	text-align: left; /* leave unchanged */
+	width:34.62em;/* non-IE (450/13) */
+	min-width: 450px;
+	
+}
+
+#doc{
+	margin-top: 10px;
+	background-color: #ffffff;
+}
+
+#doc3{
+	margin-top: 1em;
+	background: #ffffff;
+}
+
+#banner{
+	background-color: #de070c;
+}
+
+#help_banner{
+	background-color: #de070c;
+}
+
+#banner_left{
+	float: left;
+}
+
+#banner_right{
+	float: right;
+	text-align: center;
+	color: #ffffff;
+	font-size: 85%; /* 10px */ 
+	font-weight: bold;
+}
+
+#banner_right ul li {
+	margin: .2em .2em .2em .2em;
+	text-align: center;
+}
+
+#banner_right ul li a{
+	text-decoration: none;
+	color: #ffffff;
+}
+
+#banner_right ul li a:hover{
+	text-decoration: underline;
+}
+	
+#navigation{
+	background-color: #000000;
+	color: #ffffff;
+	text-align: center;
+}
+
+#navigation ul{
+	margin: 0 4em 0 4em;
+}
+
+#navigation ul li { 
+	float: left;
+	width: 8em;
+}
+
+#navigation ul li a
+{
+	padding: .2em 1em .2em 0;
+	font-size: 85%; /* 10px */ 
+	font-weight: bold;
+	text-decoration: none;
+	color: #C0C0C0;
+	text-align: center;
+}
+
+#navigation ul li a:hover{
+	color: #ffffff;
+}
+
+#help_nav{
+	margin: 1em;
+	text-align: right;
+}
+
+#footer{
+	text-align: center;
+	padding: .2em;
+	background-color: #ffffff;
+	color: gray;
+	font-size: 85%; /* 10px */ 
+}
+
+#footerLinks{
+	margin: 5px 0;
+	
+}
+
+#footerLinks a{
+	text-decoration: none;
+	color: #C0C0C0;
+	font-weight: bold;
+}
+
+#footerLinks a:hover{
+	text-decoration: underline;
+}
+
+
+.titledborder{
+	position: relative;
+	margin: auto 10px;
+	padding: 2em;
+	/*background-color: #FFFFE0;*/
+	border-width: 5px 0px 0px 0px;
+	border-style:solid;
+	border-color: #C0C0C0;
+}
+
+.titledborder legend{
+	position: absolute;
+	top: -.5em; 
+
+	
+	background-color:#fff;
+	color:#000;
+	font-weight:bold;
+	font-variant:small-caps;
+	font-size:110%;
+
+}
+
+.titledborder legend input{
+	margin: 0 .2em 0 .2em;
+}
+
+
+
+.inputfield{
+	margin: .2em 0 .2em 0;
+	text-align: left;
+}
+
+.inputfield input, select{
+	margin: 0 .2em 0 .2em;
+	line-height: 1.5em;
+	font-size: 93%; /* 10px */ 
+	
+}
+
+.textfield{
+	width: 20em;
+}
+
+.leftlabel{
+	float: left;
+	width: 9.23em;
+	text-align: right;
+	line-height: 1.5em;
+	font-size: 93%; /* 10px */ 
+	font-weight: bold;
+}
+
+.smalllabel{
+	clear: both;
+	margin: 0;
+	padding: 0;
+	font-size: 85%; /* 10px */ 
+}
+
+.rightlabel{
+	text-align: left;
+	line-height: 1.5em;
+	font-size: 93%; /* 10px */ 
+	font-weight: bold;
+}
+
+.spanlabel{
+	font-size: 93%; /* 10px */
+	font-weight: bold; 
+}
+
+.spantext{
+	font-size: 93%; /* 10px */
+}
+
+/*AUTOCOMPLETE STYLES*/
+.yui-ac{
+	margin: .2em 0 .2em 0;
+	text-align: left;
+	font-size: 93%; /* 10px */ 
+
+}
+
+.options-input{
+	margin: 0 .2em 0 .2em;
+	line-height: 1.5em;
+	font-size: 93%; /* 10px */
+	width: 20em;
+}
+
+
+.options-container {
+	position:absolute;
+	top: 3.8em;
+	left: 29.8em;
+	z-index:9050; /* positions element on top */
+}
+
+/* styles for header/body/footer wrapper within container */
+.options-container div {
+	border:1px solid #808080;
+	background:#fff;
+	overflow:hidden;
+	width: 18.6em;
+}
+
+.add-ingredient-input{
+	margin: 0 .2em 0 .2em;
+	line-height: 1.5em;
+	font-size: 93%; /* 10px */
+	width: 20em;
+}
+
+
+.add-ingredient-container {
+	position:absolute;
+	top: 5.2em;
+	left: 9.8em;
+	z-index:9050; /* positions element on top */
+}
+
+/* styles for header/body/footer wrapper within container */
+.add-ingredient-container div {
+	border:1px solid #808080;
+	background:#fff;
+	overflow:hidden;
+	width: 18.6em;
+}
+
+.add-amount-input{
+	margin: 0 .2em 0 .2em;
+	line-height: 1.5em;
+	font-size: 93%; /* 10px */
+	width: 5em;
+}
+
+
+.add-amount-container {
+	position:absolute;
+	top: 5.2em;
+	left: 4.2em;
+	z-index:9050; /* positions element on top */
+}
+
+/* styles for header/body/footer wrapper within container */
+.add-amount-container div {
+	border:1px solid #808080;
+	background:#fff;
+	overflow:hidden;
+	width: 5em;
+}
+
+/* styles for container shadow */
+.yui-ac-shadow {
+	margin:.3em;
+
+	background:#000;
+	-moz-opacity: 0.10;
+	opacity: .10;
+	filter: alpha(opacity=10);
+	z-index: 9049;
+}
+
+/* styles for results list */
+.yui-ac-content ul{
+    margin:0;
+	padding:0;
+
+}
+
+/* styles for result item */
+.yui-ac-content li {
+    margin:0;
+	padding:2px 5px;
+	cursor:default;
+	white-space:nowrap;
+
+}
+
+/* styles for prehighlighted result item */
+.yui-ac-content li.yui-ac-prehighlight {
+    background:#B3D4FF;
+}
+
+/* styles for highlighted result item */
+.yui-ac-content li.yui-ac-highlight {
+    background:#426FD9;
+	color:#FFF;
+}
+
+
+.buttonlink {
+	text-decoration: none;
+}
+
+
+.error h3{
+	color: red;
+	font-weight: bold;
+	text-align: center;
+}
+
+/** Index Page **/
+
+#login{
+	margin-top: 10em;
+	padding: .5em;
+	text-align: center;
+	border: 5px solid #de070c;
+	background-color: #ffffff;
+	
+}
+
+#announce{
+	margin-top: 1em;
+	text-align: center;
+	background: #D8D8D8; 
+}
+
+#announce a{
+	color: #06c;
+	text-decoration: none;
+	font-size: 123.1%; /* 10px */
+	font-weight: bold;
+}
+
+#logo{
+	
+	
+}
+
+#loginfields {
+	margin-top: .5em;
+	padding: .5em;
+	text-align: center;
+	background: #FFFFE0;
+}
+
+
+#loginfields form label{
+	margin-right: .2em;
+	font-weight: bold;
+	font-size: 85%; /* 10px */ 
+}
+
+.loginfield {
+	margin-right: 10px; 
+	width: 80px;
+	font-size: 85%; /* 10px */ 
+}
+
+#loginBTN{
+	margin-right: 10px;
+}
+
+#loginlinks{
+	float: right;
+	font-weight: bold;
+	font-size: 85%; /* 10px */ 
+}
+
+#loginfields div{
+	clear: both;
+	padding: 0;
+}
+
+#loginfields h4 {
+	margin: .2em;
+	color: #de070c;
+}
+
+#forgotPassDiv {
+	margin: .2em;
+}
+
+
+/** Register Page **/
+
+#register{
+	margin: 10px auto;
+}
+
+.registerRow{
+	margin: .5em;
+}
+
+.registerRow h4{
+	font-size: 93%; /* 10px */ 
+	font-weight: bold;
+}
+
+.registerRow input{
+	font-size: 93%; /* 10px */ 
+}
+
+#registerButtons{
+	margin: 1em .5em .5em .5em;
+	text-align: center;
+}
+
+
+/** Options Page **/
+ 
+#options{
+	margin: 10px auto;
+}
+
+
+.mealChoiceField{
+	margin: 0 0 1em 1em;
+	padding: .2em;
+	width: 200px;
+
+}
+
+.mealChoiceField label{
+	float: left;
+	width: 35px;
+	text-align: left;
+	padding: .2em .2em 0 0;
+	font-size: 93%; /* 10px */ 
+	font-weight: bold;
+}
+
+.mealChoiceField select{
+	width: 100px;
+}
+
+#autoChooseChkBox{
+	margin-left: 1.8em;
+}
+
+.mealOptionsHeader{
+	text-align: center;
+	margin: 1em 0 .2em 13em;
+	font-size: 93%; /* 10px */ 
+	font-weight: bold;
+}
+
+#mealOptions{
+	clear: both;
+}
+
+#customCal{
+	float:left;
+	width:14.62em;
+}
+
+#customFields{
+	margin: 0 0 0 17.4em;
+}
+
+#optionsButtons{
+	margin: 1em .5em .5em .5em;
+	text-align: center;
+}
+
+/** Add Page **/
+
+#add{
+	margin: 10px auto;
+}
+
+#addFS{
+	margin: 10px;	
+}
+	
+#addFieldsDiv{
+	margin-left: 1em;
+	margin-bottom: 1em;
+}
+
+#addFieldsDiv div div{
+	margin-left: 8em;
+}
+
+#addFieldsDiv .leftlabel{
+	width: 7em;
+}
+
+#mealSelectionDiv {
+	margin: .4em 0 1em 0;
+}
+	
+#mealSelectionDiv input{
+	margin-left: .2em;
+}
+
+#mealSelectionDiv .rightlabel{
+	margin-right: .4em;
+}
+
+#addFS form div label{
+	width: 50px;
+	text-align: left;
+}
+
+#addFS form fieldset div label{
+	width: 20px;
+	text-align: left;
+}
+
+#ingredientsFS{
+	clear: both;
+	margin: .5em 1em .5em 1em;
+	width: 30em;
+}
+
+#amtHeader{
+	margin-left: 2.6em;
+	text-align: center;
+	font-size: 93%; /* 10px */ 
+	font-weight: bold;
+	
+}
+#ingredientHeader{
+	text-align: center;
+	margin-left: 7.5em;
+	font-size: 93%; /* 10px */ 
+	font-weight: bold;
+}
+
+
+.amttextfield{
+	float: left;
+	width: 5em;
+	font-size: 93%; /* 10px */ 
+}
+
+
+#addInstructions{
+	padding-right: 1em;
+}
+
+#addInstructions textarea{
+	width: 100%;
+	text-align: left;
+	height: 20em;
+	font-size: 93%; /* 10px */
+}
+
+#addInstructions h4{
+	font-size: 93%; /* 10px */ 
+	font-weight: bold;
+}
+
+#addButtons{
+	margin: 1em .5em .5em .5em;
+	text-align: center;
+}
+
+/** Main Page **/
+
+#main{
+	margin: 10px 10px;
+}
+
+#mainCalendar{
+	float:left;
+	width:14.62em;
+}
+
+#mainContent{
+	margin: 0 0 0 17.4em;
+}
+
+#dailyMealLBL{
+	margin-top: 2px;
+	width: 7em;
+	text-align: left;
+}
+
+/**Community Page**/
+
+#searchDiv{
+	clear:both;
+	margin: 10px 10px;
+}
+
+#main_heading_div{
+	float:left;	
+	margin-left: 20px;
+}
+#steps_div{
+	float:left;	
+	text-align: left;
+	margin: 5px 0 5px 10px;
+}	
+	
+#main_heading {
+	margin-top: 12px;
+	font-size: 197%;
+	font-weight: bold;
+
+}
+
+#main_heading a {
+	text-decoration: none;
+	color: #00CCFF;
+}
+
+#main_heading a:hover {
+	text-decoration: underline;	
+}
+
+#step1{
+	color: #FFFFFF;	
+	font-size: 100%;
+	font-weight: bold;
+}
+
+#step2{
+	color: #FFFFFF;	
+	font-size: 100%;
+	font-weight: bold;
+}
+
+#step3{
+	color: #FFFFFF;	
+	font-size: 100%;
+	font-weight: bold;
+}
+
+/** Meals Page **/
+
+#meals{
+	margin: 10px auto;
+}
+
+#mealsTreeDiv{
+	float:left;
+	width:14.62em;
+	margin: .5em 10px;
+}
+
+#mealsTreeDiv fieldset{
+	margin: 0;
+}
+
+.tags_list_item{
+	width: 100%;
+	background:#A0A0A0;
+	color:#FFFFFF;
+	font-size: 93%;
+	font-weight: bold;
+	text-align: center;
+}
+
+.tags_list_item a{
+	margin: 2px;
+	width: 100%;
+	background:#A0A0A0;
+	color: #FFFFFF;
+	text-decoration: none;
+	
+}
+
+.tags_list_item:hover{
+	background: #DE070C;	
+}
+
+#mealsContent{
+	margin: 0 0 0 16em;
+}
+
+.meal_list_item{
+	margin: 5px;
+	color:#000000;
+	font-size: 138.5%;
+}
+
+.meal_list_item a{
+	color: #000000;
+	text-decoration: none;
+}
+.meal_list_item a:hover{
+	text-decoration: underline;	
+}
+
+.meal_list_item div{
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.meal_list_item div a{
+	margin: 2px;
+	padding: 0 2px;
+	color:#DE070C;
+}
+
+
+#meal div textarea{
+	width: 100%;
+	text-align: left;
+	height: 30em;
+	overflow: auto;
+	border: 0;
+	font-size: 93%; /* 10px */
+	background-color: inherit;
+}
+
+#meal div h1{
+	font-size: 138.5%; /* 18px */
+	text-align: center;
+}
+
+#meal div h3{
+	margin: 0 0 .2em 0;
+	font-size: 93%; /* 10px */
+	font-weight: bold;
+}
+
+#meal div h4{
+	font-size: 77%; /* 10px */
+	text-align: center;
+}
+
+#mealnav{
+	padding-top: 4em;
+}
+
+#meal div ul{
+	font-size: 93%; /* 10px */
+}
+
+#mealTA{
+	width: 100%;
+	text-align: left;
+	height: 10em;
+	overflow: auto;
+	border: 0;
+	font-size: 93%; /* 10px */
+	background: #FFFFE0;
+}
+
+/** Shopping List Page **/
+#shoppinglist{
+	margin: 10px 10px;
+}
+
+#slist ul li{
+	font-size: 93%; /* 10px */
+}
+
+/** About **/
+#about{
+	margin: 10px 5em 3em 5em;
+	min-height: 200px;
+}
+
+#about h3{
+	margin-bottom: .2em;
+	border-bottom: solid;
+	border-bottom-color: #000000;
+	font-size: 93%; /* 12px */
+	font-weight: bold; 
+}
+
+#about p{
+	font-size: 93%; /* 12px */
+	margin-bottom: 2em;
+}
+
+#about div{
+	font-weight: bold;
+	font-size: 93%; /* 12px */
+	margin-bottom: 1em;
+}
+
+
+/** Error Page **/
+#error{
+	margin: 5em 5em 3em 5em;
+	min-height: 200px;
+}
+
+#error h3{
+	margin-bottom: .2em;
+	border-bottom: solid;
+	border-bottom-color: #000000;
+	font-size: 93%; /* 12px */
+	font-weight: bold; 
+	color: red;
+}
+
+/** Help Page **/
+#help{
+	margin: 5em 5em 0 5em;
+	min-height: 200px;
+}
+
+#help h1{
+	font-size: 138.5%; /* 18px */
+	font-weight: bold;
+}
+
+#help h2{
+	font-size: 123.1%; /* 16px */
+	font-weight: bold;
+}
+
+#help_toc{
+	margin-top: 2em;
+	margin-left: 2em;
+	margin-bottom: 4em;
+}
+	
+#help ul {
+	margin-left: 3em;
+}
+
+#help ul li{
+	padding: .1em;
+	font-weight: bold;
+}
+
+.help_topic{
+	margin-left: 2em;	
+	margin-bottom: 2em;
+}
+
+.help_topic h3{
+	font-size: 123.1%;
+	font-weight: bold;
+	margin-bottom: 1em;
+}
+
+.ml_ref{
+	font-weight: bold;	
+}
+
+.add_meal_anchor a{
+	margin: 4px;
+	vertical-align: middle;	
+	text-decoration: none;
+	background-color: lightGrey;
+	color: white;
+	font-size: 12px;
+	
+}
+
+.add_meal_anchor a:hover{
+	text-decoration: none;
+	background-color: grey;	
+}

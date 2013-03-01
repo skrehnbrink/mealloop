@@ -1,0 +1,11 @@
+
+	
+	<ul>
+		<?php
+			$keysArr = array_keys($this->ingredients_data);
+			for($i=0; $i<count($keysArr); $i++){
+				echo '<li>'.$this->escape($this->ingredients_data[$keysArr[$i]]).' '.$this->escape($keysArr[$i]).'</li>'."\n";
+			}
+		?>
+	</ul>
+

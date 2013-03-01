@@ -1,0 +1,90 @@
+<form id="meal_form" action="<?php echo $this->baseUrl.'/'.$this->action; ?>" method="post" >
+	<?php if($this->recipe_data != null && array_key_exists('recipe', $this->recipe_data) && array_key_exists('recipe_id', $this->recipe_data['recipe'])) echo '<input name="recipe_idTF" type="hidden" value="'.$this->escape($this->recipe_data['recipe']['recipe_id']).'"/>'; ?>
+	
+ 
+	<div id="addFieldsDiv">
+		<div id="mealSelectionDiv">
+			<label class="leftlabel" >Meal Type:</label>
+			<input name="breakfastBTN" id="breakfastBTN" type="checkbox" <?php if($this->recipe_data != null && array_key_exists('breakfast', $this->recipe_data['recipe']) && $this->recipe_data['recipe']['breakfast']) echo 'checked="true"'; ?>  />
+			<label class="rightlabel" for="breakfastBTN">Breakfast</label>
+			<input name="lunchBTN" id="lunchBTN" type="checkbox" <?php if($this->recipe_data != null && array_key_exists('lunch', $this->recipe_data['recipe']) && $this->recipe_data['recipe']['lunch']) echo 'checked="true"'; ?>  />
+			<label class="rightlabel" for="lunchBTN">Lunch</label>
+			<input name="dinnerBTN" id="dinnerBTN" type="checkbox" <?php if($this->recipe_data != null && (array_key_exists('dinner', $this->recipe_data['recipe']) && $this->recipe_data['recipe']['dinner'])) echo 'checked="true"'; ?>  />
+			<label class="rightlabel" for="dinnerBTN">Dinner</label>            
+		</div>				
+		<div class="inputfield">
+			<label class="leftlabel" for="titleTF">* Title:</label>
+			<input name="titleTF" type="text" class="textfield" value="<?php if($this->recipe_data != null && array_key_exists('title', $this->recipe_data['recipe'])) echo $this->escape($this->recipe_data['recipe']['title']);?>" />
+		</div>
+		<div class="inputfield">
+			<label class="leftlabel" for="urlTF">URL:</label>
+			<input name="urlTF" type="text" class="textfield" value="<?php if($this->recipe_data != null && array_key_exists('url', $this->recipe_data['recipe'])) echo $this->escape($this->recipe_data['recipe']['url']);?>" />
+		</div>
+		<div class="inputfield">
+			<label class="leftlabel" for="tagsTF">Tag(s):</label>
+			<input name="tagsTF" type="text" class="textfield" value="<?php if($this->recipe_data != null && array_key_exists('tags', $this->recipe_data['recipe'])) echo $this->escape($this->recipe_data['recipe']['tags']);?>"  />
+			<div class="smalllabel"><small>(comma separated)</small></div>
+		</div>
+		
+		
+	</div>			
+				
+	<fieldset id="ingredientsFS" class="titledborder">
+		<legend>Ingredients</legend>
+		<div>
+			<span id="amtHeader">Qty/Amt</span>
+			<span id="ingredientHeader">Ingredient</span>
+		</div>
+		<?php 
+			$count = array();
+			$count[0] = 'one';
+			$count[1] = 'two';
+			$count[2] = 'three';
+			$count[3] = 'four';
+			$count[4] = 'five';
+			$count[5] = 'six';
+			$count[6] = 'seven';
+			$count[7] = 'eight';
+			$count[8] = 'nine';
+			$count[9] = 'ten';
+			$count[10] = 'eleven';
+			$count[11] = 'twelve';
+			$count[12] = 'thirteen';
+			$count[13] = 'fourteen';
+			$count[14] = 'fifteen';
+
+			for($i=0; $i<15; $i++){
+				echo '<div class="inputfield">'."\n";
+				echo '<div id="'.$count[$i].'AmtDIV" class="add-amount-container"></div>';
+				echo '<div id="'.$count[$i].'DIV" class="add-ingredient-container"></div>';	
+				
+				echo '	<label class="leftlabel" for="'.$count[$i].'TF">'.($i+1).':</label>'."\n";
+				
+				echo '	<input id="'.$count[$i].'AmtTF" name="'.$count[$i].'AmtTF" class="add-amount-input" type="text" value="';
+				if($this->recipe_data != null && array_key_exists($count[$i], $this->recipe_data)) echo $this->escape($this->recipe_data[$count[$i]]['amount']);
+				echo '"/>'."\n";
+				
+				echo '	<input id="'.$count[$i].'TF" name="'.$count[$i].'TF" class="add-ingredient-input" type="text" value="';
+				if($this->recipe_data != null && array_key_exists($count[$i], $this->recipe_data)) echo $this->escape($this->recipe_data[$count[$i]]['ingredient']);
+				echo '"/>'."\n";
+
+				echo '</div>'."\n";
+			}
+		?>
+		
+	</fieldset>
+		
+	<div id="addInstructions">
+		<h4>Instructions:</h4>
+		<textarea name="instructionsTA"><?php 
+			if($this->recipe_data != null && array_key_exists('instructions', $this->recipe_data['recipe'])){
+				echo $this->escape($this->recipe_data['recipe']['instructions']);
+			}
+		?></textarea>
+	</div>
+							
+	<div id="addButtons">
+		<input id="submitBTN" type="button" value="Save" />
+		<a class="buttonlink" href="<?php echo $this->baseUrl.'/meals' ?>"><input id="cancelBTN" type="button" value="Cancel" /></a>
+	</div>
+</form>

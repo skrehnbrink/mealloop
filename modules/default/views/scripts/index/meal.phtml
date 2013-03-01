@@ -1,0 +1,74 @@
+
+	
+	<div>
+		<h1><?php echo $this->escape($this->recipe_data['recipe']['title']);?></h2>
+		<h4><?php echo $this->escape($this->recipe_data['recipe']['tags']);?></h4>
+	</div>
+		
+	<div>	
+	<span class="spanlabel">Meal Type:</span>
+	<span class="spantext">
+	<?php 
+		if($this->recipe_data['recipe']['breakfast']){
+			echo 'Breakfast';
+		}
+		if($this->recipe_data['recipe']['lunch']){
+			if($this->recipe_data['recipe']['breakfast']) echo ', ';
+			echo 'Lunch';
+		}
+		if($this->recipe_data['recipe']['dinner']){
+			if($this->recipe_data['recipe']['breakfast'] || $this->recipe_data['recipe']['lunch']) echo ', ';
+			echo 'Dinner';
+		}
+		if(!$this->recipe_data['recipe']['breakfast'] && !$this->recipe_data['recipe']['lunch'] && !$this->recipe_data['recipe']['dinner']) echo 'none';
+	?>
+	</span>
+	
+	<br />
+	<span class="spanlabel">URL:</span>
+	<span class="spantext"><?php echo $this->escape($this->recipe_data['recipe']['url']);?></span>
+	</div>
+
+	
+	<div>			
+		<h3>Ingredients</h3>
+		<ul>
+			<?php
+				$count = array();
+				$count[0] = 'one';
+				$count[1] = 'two';
+				$count[2] = 'three';
+				$count[3] = 'four';
+				$count[4] = 'five';
+				$count[5] = 'six';
+				$count[6] = 'seven';
+				$count[7] = 'eight';
+				$count[8] = 'nine';
+				$count[9] = 'ten';
+				$count[10] = 'eleven';
+				$count[11] = 'twelve';
+				$count[12] = 'thirteen';
+				$count[13] = 'fourteen';
+				$count[14] = 'fifteen';
+			
+				for($i=0; $i<15; $i++){
+					if(array_key_exists($count[$i], $this->recipe_data)) echo '<li>'.$this->escape($this->recipe_data[$count[$i]]['amount']).' '.$this->escape($this->recipe_data[$count[$i]]['ingredient']).'</li>'."\n";
+				}
+			?>
+		</ul>
+	</div>
+		
+	<div>
+		<h3>Instructions</h3>
+		<textarea id="mealTA" readonly="true"><?php echo $this->escape($this->recipe_data['recipe']['instructions']);?></textarea>
+	</div>
+	
+	<?php
+	//do not display email and logout button if registering or otherwise not logged in
+	if($this->editable == true){
+		echo '<div id="mealnav">';
+		echo'	<a href='.$this->baseUrl.'/edit?id='.rawurlencode($this->recipe_data['recipe']['recipe_id']).'>Edit</a>';
+		echo'	<a href='.$this->baseUrl.'/delete?id='.rawurlencode($this->recipe_data['recipe']['recipe_id']).'>Delete</a>';
+		echo'</div>';
+	}
+	?>

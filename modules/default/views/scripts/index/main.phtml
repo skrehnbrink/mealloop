@@ -1,0 +1,103 @@
+<?php echo $this->render($this->baseUrl.'/header.phtml'); ?>
+			
+		<script type="text/javascript">		
+			var cal1 = null;
+			
+			function init() {
+				document.getElementById("home_nav").style.color = "white";
+				document.getElementById("a_help_nav").href = "<?php echo $this->baseUrl; ?>/help#a_help_home";
+				
+				cal1 = new YAHOO.widget.Calendar("cal1","mainCalendar");
+				cal1.select(new Date());
+				cal1.render();
+				cal1.selectEvent.subscribe(calSelect, cal1, true);
+				
+			}
+	
+			YAHOO.util.Event.onDOMReady(init);
+			
+			
+			function calSelect(type,args,obj) {
+				/*var dates = args[0];*/
+				updateMeal(cal1.getSelectedDates());		
+			}
+			
+			function cbSelect() {
+				updateMeal(cal1.getSelectedDates());
+			}
+			
+			function updateMeal(dates){
+			
+				var d = dates[0];
+				//get date in format: YY-mm-dd
+				var date = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+				
+				
+				var mealCB = document.getElementById("dailyMealCB");
+				var meal_type = mealCB.value;
+			
+			
+				var xmlHttp;
+  				try{
+					// Firefox, Opera 8.0+, Safari
+					xmlHttp=new XMLHttpRequest();
+				}
+				catch (e){
+					// Internet Explorer
+					try{
+						xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+      				}
+					catch (e){
+						try{
+							xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+						}
+						catch (e){
+							alert("Your browser does not support AJAX!");
+							return false;
+						}
+					}
+				}
+
+				xmlHttp.onreadystatechange=function() {
+					if(xmlHttp.readyState==4){
+						document.getElementById("meal").innerHTML = xmlHttp.responseText;
+					}
+				}
+
+				xmlHttp.open("GET","<?php echo $this->baseUrl ?>/main?date="+date+"&meal="+meal_type,true);
+				xmlHttp.send(null);
+			}
+			
+		</script> 
+		
+	</head>
+	
+	<?php echo $this->render($this->baseUrl.'/banner.phtml'); ?>
+ 
+				<div id="main" class="yui-g">
+					<div id="mainCalendar">
+					</div>
+					<div id="mainContent">
+						<div class="inputfield">
+							<label id="dailyMealLBL" class="leftlabel" for="dailyMealCB">Choose Meal:</label>
+							<select id="dailyMealCB" name="dailyMealCB" onchange="cbSelect()">
+							    <option value="B">Breakfast</option>
+							    <option value="L">Lunch</option>
+							    <option value="D" selected="selected">Dinner</option>            
+							</select>
+						</div>
+						
+						<fieldset id="mainFS" class="titledborder">
+			            			<legend>
+			            				<label>Daily Meal</label> 
+			            			</legend>
+			            			<div id="meal">
+			            				<?php if($this->recipe_data != null) echo $this->render($this->baseUrl.'/meal.phtml'); ?>
+									</div>
+			            			
+							
+						</fieldset>
+					</div>
+				</div>
+
+	<?php echo $this->render($this->baseUrl.'/footer.phtml'); ?>

@@ -1,0 +1,40 @@
+<?php echo $this->render($this->baseUrl.'/header.phtml'); ?>
+		
+		<script type="text/javascript">
+			
+			function init(){
+			    var oRegisterBTN = new YAHOO.widget.Button(
+			                        "submitBTN",  // Source element id
+			                        {
+										type: "submit"
+									}
+			                    );
+				var oCancelBTN = new YAHOO.widget.Button(
+			                        "cancelBTN",  // Source element id
+			                        {
+										type: "push"
+									}
+			                    );
+			                    
+			    
+			}
+			YAHOO.util.Event.onDOMReady(init);
+		</script> 
+		
+	</head>
+	
+	<?php echo $this->render($this->baseUrl.'/banner.phtml'); ?>
+ 
+				<div id="register" class="yui-g">
+					<div class="error">
+						<h3><?php /*if($this->errorMsg == null) echo 'Warning:  We do not encrypt our data, so please do not use a sensitive password.'*/ ?></h3>
+						<h3><?php echo $this->escape($this->errorMsg); ?></h3>
+					</div>
+					<fieldset id="registerFS" class="titledborder">
+            					<legend>User Registration (* Required Field)</legend> 
+				    		<?php echo $this->render($this->baseUrl.'/user_form.phtml'); ?>
+					</fieldset>
+
+				</div>
+		    
+	<?php echo $this->render($this->baseUrl.'/footer.phtml'); ?>

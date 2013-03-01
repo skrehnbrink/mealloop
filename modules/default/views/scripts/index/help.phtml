@@ -1,0 +1,178 @@
+<?php echo $this->render($this->baseUrl.'/header.phtml'); ?>
+		
+
+		
+	</head>
+
+	<body class="yui-skin-sam">
+		<div id="doc3" class="yui-t7">
+			<div id="hd"></div>
+			<div id="bd">
+				<div id="help_banner" class="yui-g">
+				<div id="banner_left"><a href="/"><img src="/images/mealLoopSmall.png" /></a></div>
+			</div>
+
+			<div id="help" class="yui-g">
+				<h1>Meal Loop Help</h1>
+				<div id="help_toc">
+					<h2>Table of Contents</h2>
+					<ul>
+						<li><a href="#a_help_home">Home</a></li>
+						<li><a href="#a_help_add_meal">Add Meal</a></li>
+						<li><a href="#a_help_meals">Meals</a></li>
+						<li><a href="#a_help_shopping_list">Shopping List</a></li>
+						<li><a href="#a_help_options">Options</a></li>
+						<li><a href="#a_help_profile">Profile</a></li>
+						<!-- <li><a href="#a_help_ref">References</a></li> -->
+					</ul>
+				</div>
+
+				<div class="help_topic">
+					<h3><a name="a_help_home">Home</a></h3>
+					<p>
+					The Home page allows Meal Loop users to view their meal plan. A
+					calendar is located on the left side of the page and allows users to
+					select and view meals corresponding to the calendar selection. To the right of
+					the calendar near the top of the page is the <a name="a_choose_meal"><span
+					class="ml_ref">Choose Meal</span></a> selection box, where users
+					can select and display the different meals of the day. Based on the
+					calendar and meal selections, the corresponding meal will be displayed
+					under the a <a name="a_daily_meal"><span class="ml_ref">Daily Meal</span></a> 
+					section. At the bottom of the section are Edit and Delete buttons that 
+					enable users to edit and/or delete the displayed meal. If nothing is displayed 
+					in the <span class="ml_ref">Daily Meal</span> section, this means that the 
+					user has either not added any meals corresponding to the meal type selected, 
+					or that the preferences designated by the user do not match any of the stored meals.
+					</p>
+				</div>
+				
+				<div class="help_topic">
+					<h3><a name="a_help_add_meal">Add Meal</a></h3>
+					<p>
+					Users can use the Add Meal page to store meals and recipes with Meal
+					Loop. A user's meal plan is generated from the meals that they add
+					through the Add Meal page, and until a user adds a sufficient number of meals, 
+					an adequate meal plan cannot be generated.
+					</p>
+					<br/>
+					<p>
+					<a name="a_meal_type"><span class="ml_ref">Meal Type</span></a> is the first field 
+					of the Add Meal page.  This field classifies the meal as a Breakfast, Lunch, or 
+					Dinner meal type, or some combination of three.  This ensures that only meals 
+					classified with a specific meal type are available when	generating a meal plan 
+					for that type.    
+					</p>
+					<br/>
+					<p>
+					The next three fields on the Add Meal page are: <span class="ml_ref">Title</span>, 
+					<span class="ml_ref">URL</span>, and <span class="ml_ref">Tag(s)</span>.  The
+					<a name="a_title"><span class="ml_ref">Title</span></a> field is self explanatory and 
+					is the only required field that must be populated in order to save a meal.  The 
+					<a name="a_url"><span class="ml_ref">URL</span></a> field is provided to allow users to enter 
+					the url or website address of a meal they may have stored elsewhere, and do not want to 
+					enter into Meal	Loop, but still want to use in Meal Loop.  Users should be aware that if they utilize the
+					url field and forego entering the ingredients for a meal, Meal Loop will not be able to use 
+					that Meal's ingredients when generating the shopping list.  The <a name="a_tags"><span class="ml_ref">Tag(s)</span></a>
+					 field enables users to categorize or tag a meal into one or more tags, with each tag separated by a comma.  
+					Tagging meals is very useful to create extremely customized meal plans.  For instance, a user could
+					tag all meals with beef ingredients with a "beef" tag, meals that take 20 minutes or less to cook
+					with a "quick" tag, and lowfat meals with a "lowfat" tag.  That way, when setting meal generation
+					preferences, the user can specify that they want "lowfat" meals Monday through Friday, "beef" meals 
+					on Saturday, and "quick" (and "lowfat") meals on Tuesday and Thursday.  
+					</p>
+					<br/>
+					<p>
+					The next section on the Add Meal page is <a name="a_ingredients"><span class="ml_ref">Ingredients</span></a>.  
+					Here, a user can enter the quantities/amounts and ingredients for the meal.  The information here is used 
+					when generating a shopping list for	all ingredients needed for the meals of the week.  Also note that 
+					the ingredient fields are autocomplete fields so when entering values, Meal Loop will display a list 
+					previously entered ingredients that match the value being entered.  The 
+					<a name="a_instructions"><span class="ml_ref">Instructions</span></a> field is multi-line textbox, 
+					which can be used to describe how to make the meal.  
+					</p>
+				</div>
+				
+				<div class="help_topic">
+					<h3><a name="a_help_meals">Meals</a></h3>
+					<p>
+					Meals that have been saved on the <a href="#a_help_add_meal">Add Meal</a> can be view on the 
+					Meals page.  One the left side of the Meals page is the <a
+					name="a_meal_tags"><span class="ml_ref">Meal Tags</span></a> tree that displays tag values
+					for every meal that has been added.  Each tag value listed also displays a number in parenthesis that
+					corresponds to the number of meals containing that tag.  If you expand the tag in the tree, the titles of
+					all corresponding meals will be displayed beneath.  Clicking on a meal in the tree will then display the meal
+					in the <a name="a_meal"><span class="ml_ref">Meal</span></a> section to the right of the tree. At the bottom of the section 
+					are Edit and Delete buttons that enable users to edit and/or delete the displayed meal.</p>
+				</div>
+				
+				<div class="help_topic">
+					<h3><a name="a_help_shopping_list">Shopping List</a></h3>
+					<p>
+					All ingredients required for the meals of a given week can be viewed on the Shopping List page.  A calendar is 
+					displayed on the left side of the page that is defaulted to the current week.  To the right of the calendar is
+					the <a name="a_shopping_list"><span class="ml_ref">Shopping List</span></a> section that displayed all ingredients
+					required for the meals of the week selected in the calendar.  By making selections on the Calendar, users can view
+					the shopping list corresponding to the week selected.
+					</p>
+				</div>
+				
+				<div class="help_topic">
+					<h3><a name="a_help_options"></a>Options</h3>
+					<p>
+					All meal generation options are made on the Options page.  Generation options are made on a per meal type basis.  The 
+					<span class="ml_ref">Meal</span> select field controls the meal type for which the remaining option will be applied.  Selecting 
+					a different meal type will display the options associated with the selected meal type.  Meal generation options are split 
+					into two major sections: <span class="ml_ref">Auto Generate Meals</span> and <span class="ml_ref">Custom Meal Selection</span>.  
+					Checkboxes next to each section designates if the user wishes to have their meal plan auto generated, or if they wish to choose 
+					meals manually.  
+					</p>
+					<br/>
+					<p>
+					<a name="a_auto_generate"><span class="ml_ref">Auto Generate Meals</span></a> section contains additional options
+					that the user may choose to customize how meals are generated.  Choosing the 
+					<a name="a_choose_meals_automatically"><span class="ml_ref">Choose Meals Automatically</span></a>
+					checkbox field, will cause Meal Loop to make meal selection by complete random. If users wish to have more control 
+					on how meals are generated, they can choose the <a name="a_additional_meal_options"><span class="ml_ref">Additional Meal Options</span></a> 
+					section.  This section contains text fields for each day of the week, in which meal tag values may be specified.  
+					Entering tag values will limit the meals that may be generated for the corresponding day to only meals that match the tags specified.  
+					For instance, if a user entered "chicken" in the Monday field, only meals tagged with "chicken" will be selected for Monday meals.  Furthermore, 
+					users can choose the <a name="a_shuffle_meal_order"><span class="ml_ref">Shuffle Meal Order</span></a> checkbox to shuffle the order 
+					of meals corresponding to the tag values entered in the days of the week text fields.  So, instead of having meals tagged with "chicken" 
+					always on Mondays, choosing shuffle will randomly select the day in which the chicken meal is selected each week.
+					</p>
+					<br/>
+					<p>
+					The <a name="a_auto_generate"><span class="ml_ref">Manual Meal Selection</span></a> section is available for users who 
+					wish to manually choose each meal of the day, each day of the week.  A calendar allows user to select any given week of
+					of the month, to the right of the calendar are text fields for each day of the week corresponding to week selected on the 
+					calendar.  Users can make meal selections by entering the meal title in the day of week text fields.  The text fields are 
+					autocomplete fields; as the user enters values into the field, meal titles matching the value entered will be displayed below
+					the field.     
+					</p>
+				</div>
+				
+				<div class="help_topic">
+					<h3><a name="a_help_profile"></a>Profile</h3>
+					<p>
+					Users can update fields associated with their profile on the Profile page.  Fields are available to update: email, password, name, 
+					and website.
+					</p>
+				</div>
+				
+				<!--
+				<div class="help_topic">
+					<h3><a name="a_help_ref"></a>References</h3>
+					<div>
+						<p>Something about Ref 1</p>
+					</div>
+					<div>
+						<p>Something about Ref 2</p>
+					</div>
+					<div>
+						<p>Something about Ref 3</p>
+					</div>
+				</div>
+				-->
+		</div>
+
+<?php echo $this->render($this->baseUrl.'/footer.phtml'); ?>

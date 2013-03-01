@@ -1,0 +1,40 @@
+<?php echo $this->render($this->baseUrl.'/header.phtml'); ?>
+		
+		<script type="text/javascript">
+			
+			function init(){
+				document.getElementById("profile_nav").style.color = "white";
+				document.getElementById("a_help_nav").href = "<?php echo $this->baseUrl; ?>/help#a_help_profile";
+				
+			    var oRegisterBTN = new YAHOO.widget.Button(
+			                        "submitBTN",  // Source element id
+			                        {
+										type: "submit"
+									}
+			                    );
+				var oCancelBTN = new YAHOO.widget.Button(
+			                        "cancelBTN",  // Source element id
+			                        {
+										type: "push"
+									}
+			                    );
+			}
+			YAHOO.util.Event.onDOMReady(init);
+		</script> 
+		
+	</head>
+	
+	<?php echo $this->render($this->baseUrl.'/banner.phtml'); ?>
+ 
+				<div id="register" class="yui-g">
+					<div class="error">
+						<h3><?php echo $this->escape($this->errorMsg); ?></h3>
+					</div>
+					<fieldset id="registerFS" class="titledborder">
+            			<legend>User Profile (* Required Field)</legend> 
+				    	<?php echo $this->render($this->baseUrl.'/user_form.phtml'); ?>
+					</fieldset>
+
+				</div>
+		    
+	<?php echo $this->render($this->baseUrl.'/footer.phtml'); ?>

@@ -1,0 +1,84 @@
+<?php include("header.phtml"); ?>
+		
+		<script type="text/javascript">
+			
+			function init(){
+			    var oLoginBTN = new YAHOO.widget.Button(
+			                        "loginBTN",  // Source element id
+			                        {
+										type: "submit"
+									}
+			                    );
+			     var oPassBTN = new YAHOO.widget.Button(
+			                        "passBTN",  // Source element id
+			                        {
+										type: "submit"
+									}
+			                    );
+			                                   
+			     var pForm = document.getElementById("passForm");
+			     pForm.style.display = "none";
+
+			}
+			YAHOO.util.Event.onDOMReady(init);
+			
+			
+			
+			function forgotPass(){
+				/*
+				var lForm = document.getElementById("loginForm");
+			    lForm.style.display = "none";
+			    */
+				var pForm = document.getElementById("passForm");
+			    pForm.style.display = "block";
+			}
+			
+		</script> 
+		
+	</head>
+	<body class="yui-skin-sam">
+		<div id="custom-doc" class="yui-t7"> 
+		   	<div id="hd"></div> 
+		   	<div id="bd"> 
+		   	<div id="introbd">
+				<div id="login">
+			    	<div id="logo" class="yui-g"> 
+			    		<a href="/"><img src="/images/mealLoopBeta.png" alt="Meal Loop" /></a>
+			    	</div> 
+			   	 	
+					<div id="loginfields" class="yui-g">
+						<?php
+							if($this->errorMsg != null) echo '<h4>'.$this->errorMsg.'</h4>';
+							if($this->infoMsg != null) echo '<h4>'.$this->infoMsg.'</h4>';
+				   	 	?>
+						<div id="loginlinks">
+								<div><a href="<?php echo $this->baseUrl ?>/register">Register</a></div>
+								<div><a href="<?php echo $this->baseUrl ?>/about">About</a></div>
+						</div>
+						<form id="loginForm" action="<?php echo $this->baseUrl.'/'.$this->action ?>" method="post">
+							<label for="userTF">Email:</label><input name="userTF" class="loginfield" type="text" /> 
+							<label for="passTF">Password:</label><input	name="passTF" class="loginfield" type="password" /> 
+							<input id="loginBTN" type="submit" value="Login" />
+						</form>
+
+						<?php
+							if($this->errorMsg != null) echo '<div id="forgotPassDiv"><a href=# onclick="forgotPass()">Forgot Password?</a></div>';
+				   	 		?>
+				   	 	<form id="passForm" action="<?php echo $this->baseUrl.'/'.$this->action ?>" method="post">
+				    		<label for="emailTF">Email:</label><input name="emailTF" class="loginfield" type="text" />
+							<input id="passBTN" type="submit" value="Email Password" />
+				    	</form>
+					</div>
+					
+				</div>
+				<!-- 
+				<div id="announce">
+					<a href="http://krehnbrink.com/2008/03/06/official-launch-meal-loop/" target="_blank">About Us</a>
+				</div>
+				-->
+			</div>	
+		    </div> 
+		   	<div id="ft"></div> 
+		</div> 
+	</body> 
+</html>

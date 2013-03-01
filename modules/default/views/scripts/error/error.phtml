@@ -1,0 +1,24 @@
+<?php echo $this->render($this->baseUrl.'/header.phtml'); ?>
+		
+		<script type="text/javascript">
+			
+			function init(){
+
+			}
+			
+			YAHOO.util.Event.onDOMReady(init);
+		</script> 
+		
+	</head>
+	
+	<?php echo $this->render($this->baseUrl.'/banner.phtml'); ?>
+ 
+				<div id="error" class="yui-g">
+					
+					<h3>Error Processing Request</h3>
+					
+					<p><?php echo $this->errorMsg; ?></p>
+
+				</div>
+		    
+	<?php echo $this->render($this->baseUrl.'/footer.phtml'); ?>

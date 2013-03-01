@@ -1,0 +1,431 @@
+<?php echo $this->render($this->baseUrl.'/header.phtml'); ?>
+			
+		<script type="text/javascript">
+		
+			<?php 
+				if($this->options_data != null) echo 'var options_id = '.$this->options_data['options_id'].";\n";
+				else echo 'var options_id = null;'."\n";
+			?>
+			
+			function init(){
+				document.getElementById("options_nav").style.color = "white";
+				document.getElementById("a_help_nav").href = "<?php echo $this->baseUrl; ?>/help#a_help_options";
+				
+				var oSaveBTN = new YAHOO.widget.Button(
+			                        "saveBTN",  // Source element id
+			                        {
+										type: "button"
+									}
+			                    );
+				var oCancelBTN = new YAHOO.widget.Button(
+			                        "cancelBTN",  // Source element id
+			                        {
+										type: "push"
+									}
+			                    );
+				function onSaveBTNClick(e) { 
+	        		document.getElementById("options_form").submit();
+	    		} 
+	    		oSaveBTN.addListener("click", onSaveBTNClick); 
+	    		
+				<?php
+					// A JavaScript Array DataSource
+					if($this->options_data != null){
+						$recipe_arr = $this->options_data['recipe_arr'];
+						if($recipe_arr != null && count($recipe_arr) > 0){
+							echo 'var recipe_arr = ["'.$recipe_arr[0].'"';
+							for($i=1; $i<count($recipe_arr); $i++){
+								echo ', "'.$recipe_arr[$i].'"';
+							}
+							echo '];'."\n";
+						}
+						else{
+							echo 'var recipe_arr = [];'."\n";
+						}
+						
+						echo 'var recipeDataSource = new YAHOO.widget.DS_JSArray(recipe_arr);'."\n";						
+						
+						echo 'var recipeAutoComplete = new YAHOO.widget.AutoComplete("c_sundayTF","c_sundayDIV", recipeDataSource);'."\n";
+						//echo 'recipeAutoComplete.typeAhead = true;';
+						echo 'recipeAutoComplete.animSpeed = .2;';
+						echo 'var recipeAutoComplete = new YAHOO.widget.AutoComplete("c_mondayTF","c_mondayDIV", recipeDataSource);'."\n";
+						//echo 'recipeAutoComplete.typeAhead = true;';
+						echo 'recipeAutoComplete.animSpeed = .2;';
+						echo 'var recipeAutoComplete = new YAHOO.widget.AutoComplete("c_tuesdayTF","c_tuesdayDIV", recipeDataSource);'."\n";
+						//echo 'recipeAutoComplete.typeAhead = true;';
+						echo 'recipeAutoComplete.animSpeed = .2;';
+						echo 'var recipeAutoComplete = new YAHOO.widget.AutoComplete("c_wednesdayTF","c_wednesdayDIV", recipeDataSource);'."\n";
+						//echo 'recipeAutoComplete.typeAhead = true;';
+						echo 'recipeAutoComplete.animSpeed = .2;';
+						echo 'var recipeAutoComplete = new YAHOO.widget.AutoComplete("c_thursdayTF","c_thursdayDIV", recipeDataSource);'."\n";
+						//echo 'recipeAutoComplete.typeAhead = true;';
+						echo 'recipeAutoComplete.animSpeed = .2;';
+						echo 'var recipeAutoComplete = new YAHOO.widget.AutoComplete("c_fridayTF","c_fridayDIV", recipeDataSource);'."\n";
+						//echo 'recipeAutoComplete.typeAhead = true;';
+						echo 'recipeAutoComplete.animSpeed = .2;';
+						echo 'var recipeAutoComplete = new YAHOO.widget.AutoComplete("c_saturdayTF","c_saturdayDIV", recipeDataSource);'."\n";
+						//echo 'recipeAutoComplete.typeAhead = true;';
+						echo 'recipeAutoComplete.animSpeed = .2;';
+						
+					}
+
+				
+				?>
+
+				//select 'Auto Generate Meals', 'Choose Meals Automatically', and 'Shuffle'
+				
+				<?php 
+				
+					if($this->options_data != null && $this->options_data['meal_generation'] == 'A'){
+						echo 'var chkBox = document.getElementById("autoChkBox");'."\n";
+						echo 'chkBox.checked = true;'."\n";
+						echo 'doClick(chkBox.id);'."\n";
+						
+						if($this->options_data['auto_options'] == 'C') echo 'chkBox = document.getElementById("autoChooseChkBox");'."\n";
+						else echo 'chkBox = document.getElementById("addnlOptionsChkBox");'."\n";
+						echo 'chkBox.checked = true;'."\n";
+						echo 'doClick(chkBox.id);'."\n";
+						
+						if(!array_key_exists('dish_order', $this->options_data) || $this->options_data['dish_order'] == 'M') echo 'chkBox = document.getElementById("maintainOrderChkBox");'."\n";
+						else echo 'chkBox = document.getElementById("shuffleChkBox");'."\n";
+						echo 'chkBox.checked = true;'."\n";
+						echo 'doClick(chkBox.id);'."\n";
+					}
+					else{
+						echo 'var chkBox = document.getElementById("customChkBox");'."\n";
+						echo 'chkBox.checked = true;'."\n";
+						echo 'doClick(chkBox.id);'."\n";
+					}
+				?>
+
+
+				//create calendar
+				var cal1 = new YAHOO.widget.Calendar("cal1","customCal");
+				cal1.render();
+				cal1.selectEvent.subscribe(handleSelect, cal1, true);
+				selectWeek(cal1, new Date());
+				
+
+			}
+			
+			
+			YAHOO.util.Event.onDOMReady(init);
+
+
+			function doClick(id){
+
+				if(id.indexOf("autoChkBox") != -1 || id.indexOf("customChkBox") != -1){
+					var chkBox1 = document.getElementById("customChkBox");
+					var chkBox2 = document.getElementById("autoChkBox");
+
+					if(id.indexOf("autoChkBox") != -1){chkBox1.checked = !chkBox2.checked;}
+					else{chkBox2.checked = !chkBox1.checked;}
+
+					if(chkBox1.checked){
+						new Effect.Opacity('autoContent', {duration:0.0, from:1.0, to:0.5});
+						new Effect.Opacity('customContent', {duration:0.0, from:0.5, to:1.0});
+					}
+					else{
+						new Effect.Opacity('customContent', {duration:0.0, from:1.0, to:0.5});
+						new Effect.Opacity('autoContent', {duration:0.0, from:0.5, to:1.0});
+					}
+
+					var div1 = document.getElementById("autoContent");
+					var elems1 = div1.getElementsByTagName("input");
+					for(var i=0; i<elems1.length; i++){
+						elems1.item(i).disabled = !chkBox2.checked;
+					}
+					
+					var div2 = document.getElementById("customContent");
+					var elems2 = div2.getElementsByTagName("input")
+					for(var i=0; i<elems2.length; i++){
+						elems2.item(i).disabled = !chkBox1.checked;
+					}
+
+				}
+				else if(id.indexOf("autoChooseChkBox") != -1 || id.indexOf("addnlOptionsChkBox") != -1){
+					var chkBox1 = document.getElementById("addnlOptionsChkBox");
+					var chkBox2 = document.getElementById("autoChooseChkBox");
+
+					if(id.indexOf("autoChooseChkBox") != -1){chkBox1.checked = !chkBox2.checked;}
+					else{chkBox2.checked = !chkBox1.checked;}
+
+					if(chkBox2.checked){
+						new Effect.Opacity('addnlOptionsContent', {duration:0.0, from:1.0, to:0.5});
+					}
+					else{
+						new Effect.Opacity('addnlOptionsContent', {duration:0.0, from:0.5, to:1.0});
+					}
+
+
+					var div1 = document.getElementById("addnlOptionsContent");
+					var elems1 = div1.getElementsByTagName("input");
+					for(var i=0; i<elems1.length; i++){
+						elems1.item(i).disabled = !chkBox1.checked;
+					}
+					
+				}
+				else if(id.indexOf("shuffleChkBox") != -1 || id.indexOf("maintainOrderChkBox") != -1){
+					var chkBox1 = document.getElementById("maintainOrderChkBox");
+					var chkBox2 = document.getElementById("shuffleChkBox");
+
+					if(id.indexOf("shuffleChkBox") != -1){chkBox1.checked = !chkBox2.checked;}
+					else{chkBox2.checked = !chkBox1.checked;}
+				}
+				
+			}
+
+
+			function handleSelect(type,args,obj) {
+
+				var dates = args[0];
+				var d = dates[0];
+			
+
+				var year = d[0], month = d[1], day = d[2];
+
+				//find the dow
+				var date = new Date();
+				date.setFullYear(year, month-1, day);
+
+				//if week is already selected, return
+				if(dates.length == 7 && date.getDay() == 0) return;
+				
+				
+				selectWeek(obj, date);
+				
+				
+													
+			}
+
+			function selectWeek(cal, date){
+
+				var dow = date.getDay();
+
+				var week = new Array();
+				week[dow] = date;
+
+				for(var i=0; i<dow; i++){
+					week[i] = YAHOO.widget.DateMath.subtract(date, YAHOO.widget.DateMath.DAY, dow-i);
+				}
+				for(var i=dow+1; i<7; i++){
+					week[i] = YAHOO.widget.DateMath.add(date, YAHOO.widget.DateMath.DAY, i-dow);
+				}
+				
+				//get date of first day of week (Sunday) in format: YY-mm-dd
+				var d = week[0].getFullYear() + "-" + (week[0].getMonth()+1) + "-" + week[0].getDate();
+				
+				//set the hidden input field to the first day of the week
+				var input = document.getElementById("customCalendar");
+				
+				input.value = d;
+				
+				cal.select(week);
+				cal.render();
+				
+				//populate meals (using AJAX) for the selected week (if no errors)
+				<?php if($this->errorMsg == null) echo 'getMeals(d);'; ?> 
+			}
+			
+			function getMeals(date){
+			
+				if(options_id == null) return;
+				
+				var xmlHttp;
+  					try{
+						// Firefox, Opera 8.0+, Safari
+						xmlHttp=new XMLHttpRequest();
+					}
+					catch (e){
+						// Internet Explorer
+						try{
+							xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+      						}
+						catch (e){
+							try{
+								xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+							}
+							catch (e){
+								alert("Your browser does not support AJAX!");
+								return false;
+							}
+						}
+					}
+
+					xmlHttp.onreadystatechange=function() {
+						if(xmlHttp.readyState==4){
+							var text = xmlHttp.responseText;
+							var i1 = text.indexOf("<meals>") + 7;
+							var i2 = text.indexOf("</meals>");
+							text = text.substr(i1, i2-i1);
+							var mealsArr = text.split(",");
+							document.getElementById("c_mondayTF").value = mealsArr[0];
+							document.getElementById("c_tuesdayTF").value = mealsArr[1];
+							document.getElementById("c_wednesdayTF").value = mealsArr[2];
+							document.getElementById("c_thursdayTF").value = mealsArr[3];
+							document.getElementById("c_fridayTF").value = mealsArr[4];
+							document.getElementById("c_saturdayTF").value = mealsArr[5];
+							document.getElementById("c_sundayTF").value = mealsArr[6];
+						}
+					}
+
+					xmlHttp.open("GET","<?php echo $this->baseUrl ?>/options?options_id="+options_id+"&date="+date,true);
+					xmlHttp.send(null);
+			}
+			
+
+			function mealSelect(){
+				
+				var mealCB = document.getElementById("perDayMealCB");
+				var form = document.getElementById("meal_type_form");
+				var meal = document.getElementById("meal");
+				meal.value = mealCB.value;
+				
+				form.submit();
+			}
+
+			
+		</script> 
+		
+	</head>
+	
+	<?php include("banner.phtml"); ?>
+
+				<form id="meal_type_form" name="meal_type_form" action="<?php echo $this->baseUrl.'/'.$this->action; ?>" method="get">
+					<input id="meal" name="meal" type="hidden" />
+				</form>
+				
+				<div id="options" class="yui-g">
+					<div class="error">
+						<h3><?php echo $this->escape($this->errorMsg); ?></h3>
+					</div>
+					<fieldset id="optionsFS" class="titledborder">
+            					<legend>Meal Generation Options</legend> 
+						<form id="options_form" action="<?php echo $this->baseUrl.'/'.$this->action; ?>" method="post">
+							<div class="mealChoiceField">
+								<label for="perDayMealCB">Meal:</label>
+								<select name="perDayMealCB" id="perDayMealCB" onchange="mealSelect()"  >
+								    <option value="B" <?php if($this->options_data != null && $this->options_data['meal_type'] == "B") echo 'selected="selected"'; ?> >Breakfast</option>
+								    <option value="L" <?php if($this->options_data != null && $this->options_data['meal_type'] == "L") echo 'selected="selected"'; ?> >Lunch</option>
+								    <option value="D" <?php if($this->options_data == null || ($this->options_data != null && $this->options_data['meal_type'] == "D")) echo 'selected="selected"'; ?> >Dinner</option>            
+								</select>
+							</div>
+									
+						 	<div class="optionsRow">
+					    		 <fieldset id="autoFS" class="titledborder">
+			            			 	<legend>
+			            					<input id="autoChkBox" name="autoChkBox" type="checkbox" onclick="doClick('autoChkBox')" /><label for="autoChkBox">Auto Generate Meals</label> 
+			            				</legend>
+									
+								<div id="autoContent">
+
+									<div class="inputfield">
+										<input id="autoChooseChkBox" name="autoChooseChkBox" type="checkbox" onclick="doClick('autoChooseChkBox')" />
+										<label class="rightlabel" for="autoChooseChkBox">Choose Meals Automatically</label>
+									</div>
+	
+						    		 	<fieldset id="addnlMealOptionsFS" class="titledborder">
+						            			<legend>
+						            				<input id="addnlOptionsChkBox" name="addnlOptionsChkBox" type="checkbox" onclick="doClick('addnlOptionsChkBox')" /><label for="addnlOptionsChkBox">Additional Meal Options</label> 
+						            			</legend>
+										
+										<div id="addnlOptionsContent">
+
+											<div class="inputfield">
+												<input id="maintainOrderChkBox"	name="maintainOrderChkBox" type="checkbox"	onclick="doClick('maintainOrderChkBox')" /> 
+												<label class="rightlabel" for="maintainOrderRB">Maintain Meal Order</label>
+											</div>
+											<div class="inputfield">
+												<input id="shuffleChkBox" name="shuffleChkBox" type="checkbox" onclick="doClick('shuffleChkBox')" />
+												<label class="rightlabel" for="sundayTF">Shuffle Meal Order</label>
+											</div>
+											
+										
+											<div>
+												<span class="mealOptionsHeader">Meal Tag(s) (comma separated)</span>
+											</div>	
+										
+											<div id="mealOptions">	
+												
+													<?php
+														$days = array();
+														$days[0] = 'Sunday';
+														$days[1] = 'Monday';
+														$days[2] = 'Tuesday';
+														$days[3] = 'Wednesday';
+														$days[4] = 'Thursday';
+														$days[5] = 'Friday';
+														$days[6] = 'Saturday';
+													
+														for($i=0; $i<7; $i++){
+															echo '<div class="inputfield">'."\n";
+															//echo "\t\t\t\t\t\t\t\t\t\t\t\t\t";
+															echo '<label class="leftlabel" for="'.strtolower($days[$i]).'TF">'.($days[$i]).':</label>'."\n";
+															echo '<input class="textfield" name="'.strtolower($days[$i]).'TF" type="text" ';
+															if($this->options_data != null && 
+																array_key_exists('addnl_options', $this->options_data) && 
+																array_key_exists(strtolower($days[$i]), $this->options_data['addnl_options']))
+																echo 'value="'.$this->escape($this->options_data['addnl_options'][strtolower($days[$i])]).'" />'."\n";
+															else echo '/>'."\n";															
+															echo '</div>'."\n";
+														}
+													?>
+												
+												
+											</div>
+										</div> 
+									</fieldset>
+								</div>							
+							</fieldset>
+							</div>
+							<div class="optionsRow">
+								<fieldset id="customFS" class="titledborder">
+			            					<legend>
+			            						<input id="customChkBox" name="customChkBox" type="checkbox" onclick="doClick('customChkBox')" /><label for="customChkBox">Manual Meal Selection</label> 
+			            					</legend>
+									<div id="customContent" class="inputfield">
+										<div id="customCal">
+										</div>
+										<input id="customCalendar" name="customCalendar" type="hidden"/>
+										
+										<div id="customFields">
+											
+											<?php
+
+											$days = array();
+											$days[0] = 'Sunday';
+											$days[1] = 'Monday';
+											$days[2] = 'Tuesday';
+											$days[3] = 'Wednesday';
+											$days[4] = 'Thursday';
+											$days[5] = 'Friday';
+											$days[6] = 'Saturday';
+													
+											for($i=0; $i<7; $i++){
+												echo '<div >'."\n";
+												echo '<div id="c_'.strtolower($days[$i]).'DIV" class="options-container"></div>';
+												echo '<label class="leftlabel" for="c_'.strtolower($days[$i]).'TF">'.$days[$i].':</label>'."\n";
+												echo '<input id="c_'.strtolower($days[$i]).'TF" name="c_'.strtolower($days[$i]).'TF" class="options-input" type="text" ';
+												if($this->options_data != null && 
+													array_key_exists('manual_options', $this->options_data) &&
+													array_key_exists(strtolower($days[$i]), $this->options_data['manual_options'])) 
+														echo 'value="'.$this->escape($this->options_data['manual_options'][strtolower($days[$i])]['title']).'" />'."\n";
+												else echo '/>'."\n";
+																			
+												echo '</div>'."\n";
+											}
+											?>
+											
+										</div>	
+									</div>
+								</fieldset>
+							</div>
+							<div id="optionsButtons">
+								<input id="saveBTN" name="saveBTN" type="button" value="Save" />
+								<input id="cancelBTN" name="cancelBTN" type="button" value="Cancel" />
+							</div>
+				    	</form>
+					</fieldset>
+				</div>
+
+<?php echo $this->render($this->baseUrl.'/footer.phtml'); ?>

@@ -1,0 +1,110 @@
+<?php include("header.phtml"); ?>
+			
+		<script type="text/javascript">
+			function init(){
+				document.getElementById("shoppinglist_nav").style.color = "white";
+				document.getElementById("a_help_nav").href = "<?php echo $this->baseUrl; ?>/help#a_help_shopping_list";
+				
+				//create calendar
+				var cal1 = new YAHOO.widget.Calendar("cal1","mainCalendar");
+				cal1.render();
+				cal1.selectEvent.subscribe(handleSelect, cal1, true);
+				selectWeek(cal1, new Date());
+			}
+			
+			
+			YAHOO.util.Event.onDOMReady(init);
+						
+			
+			function handleSelect(type,args,obj) {
+
+				var dates = args[0];
+				var d = dates[0];
+				var year = d[0], month = d[1], day = d[2];
+
+				//find the dow
+				var date = new Date();
+				date.setFullYear(year, month-1, day);
+
+				//if week is already selected, return
+				if(dates.length == 7 && date.getDay() == 0) return;
+				
+				selectWeek(obj, date);								
+			}
+
+			function selectWeek(cal1, date){
+
+				var dow = date.getDay();
+
+				var week = new Array();
+				week[dow] = date;
+
+				for(var i=0; i<dow; i++){
+					week[i] = YAHOO.widget.DateMath.subtract(date, YAHOO.widget.DateMath.DAY, dow-i);
+				}
+				for(var i=dow+1; i<7; i++){
+					week[i] = YAHOO.widget.DateMath.add(date, YAHOO.widget.DateMath.DAY, i-dow);
+				}
+
+				cal1.select(week);
+				cal1.render();
+				
+				//get date of first day of week (Sunday) in format: YY-mm-dd
+				var d = week[0].getFullYear() + "-" + (week[0].getMonth()+1) + "-" + week[0].getDate();
+				getList(d);
+			}
+			
+			function getList(date){
+			
+				var xmlHttp;
+  					try{
+						// Firefox, Opera 8.0+, Safari
+						xmlHttp=new XMLHttpRequest();
+					}
+					catch (e){
+						// Internet Explorer
+						try{
+							xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+      						}
+						catch (e){
+							try{
+								xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+							}
+							catch (e){
+								alert("Your browser does not support AJAX!");
+								return false;
+							}
+						}
+					}
+
+					xmlHttp.onreadystatechange=function() {
+						if(xmlHttp.readyState==4){
+							document.getElementById("slist").innerHTML = xmlHttp.responseText;
+
+						}
+					}
+
+					xmlHttp.open("GET","<?php echo $this->baseUrl ?>/shoppinglist?date="+date,true);
+					xmlHttp.send(null);
+			}
+			
+		</script> 
+		
+	</head>
+	
+	<?php include("banner.phtml"); ?>
+
+				<div id="shoppinglist" class="yui-g">
+					<div id="mainCalendar">
+					</div>
+					<div id="mainContent">						
+						<fieldset id="mainFS" class="titledborder">
+			            	<legend>
+			            		<label>Shopping List</label> 
+			            	</legend>
+							<div id="slist">
+							</div>	
+						</fieldset>
+					</div>
+
+	<?php include("footer.phtml"); ?>

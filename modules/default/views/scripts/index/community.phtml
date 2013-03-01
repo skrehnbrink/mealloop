@@ -1,0 +1,183 @@
+<?php include("header.phtml"); ?>
+			
+		<script type="text/javascript">
+		
+			function getMeal(id){
+						var xmlHttp;
+	  					try{
+							// Firefox, Opera 8.0+, Safari
+							xmlHttp=new XMLHttpRequest();
+						}
+						catch (e){
+							// Internet Explorer
+							try{
+								xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+	      						}
+							catch (e){
+								try{
+									xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+								}
+								catch (e){
+									alert("Your browser does not support AJAX!");
+									return false;
+								}
+							}
+						}
+	
+						xmlHttp.onreadystatechange=function() {
+							if(xmlHttp.readyState==4){
+								document.getElementById("meal").innerHTML = xmlHttp.responseText;
+							}
+						}
+						
+						xmlHttp.open("GET","<?php echo $this->baseUrl ?>/community?id="+encodeURIComponent(id),true);
+						xmlHttp.send(null);
+			}
+		
+			function init(){
+				<?php
+					$nav = 'community_nav';
+					if($this->user_view) {
+						$nav = 'meals_nav';
+					}
+					echo 'if(document.getElementById("'.$nav.'")) document.getElementById("'.$nav.'").style.color = "white";';
+				?>
+				if(document.getElementById("a_help_nav")) document.getElementById("a_help_nav").href = "<?php echo $this->baseUrl; ?>/help#a_help_meals";
+				
+				//var tree;
+				//tree = new YAHOO.widget.TreeView("mealsTree");
+				//var root = tree.getRoot(); 
+
+				<?php
+				/*
+					$keys = array_keys($this->recipe_data);
+					
+					$keyCnt = 1;
+					foreach($keys as $key){
+						$meals = $this->recipe_data[$key];
+						
+						echo 'var keyNode'.$keyCnt.' = new YAHOO.widget.TextNode("'.$key.' ('.count($meals).')", root, false);'."\n";	
+
+						$mealCnt = 1;
+						foreach($meals as $meal){
+							echo 'var myobj = { label: "'.$meal['title'].'", id:"'.$meal['id'].'" };'."\n"; 
+							echo 'var mealNode'.$mealCnt.' = new YAHOO.widget.TextNode(myobj, keyNode'.$keyCnt.', false);'."\n";	
+							$mealCnt++;
+						}
+
+						$keyCnt++;
+					}
+				*/
+				?>
+				
+				//tree.draw(); 
+				/*
+				tree.subscribe("labelClick", function(node) {
+
+					//only retrieve data for leaf nodes
+					if(!node.hasChildren()){
+						getMeal(node.data.id);
+					}
+	  				
+   				});
+				*/
+					
+				
+			}
+			
+			
+			YAHOO.util.Event.onDOMReady(init);
+
+
+			
+
+
+		</script> 
+		
+	</head>
+	
+	<?php include("banner.phtml"); ?>
+
+				<div id="meals" class="yui-g">
+				
+				  	<div id="searchDiv">
+						<form action="<?php echo $this->baseUrl.'/'.$this->action; ?>" method="post">
+							<!-- <label for="searchTF">Search:</label> --> 
+							<input name="searchTF" class="textfield" type="text" /> 
+							<input id="searchBTN" type="submit"	value="Search" />
+							<input id="user_view" type="hidden" value="<?php echo $this->user_view; ?>" />
+						</form>
+					</div>
+					
+					<div id="mealsTreeDiv">
+						<fieldset class="titledborder"><legend> <label><?php echo $this->tagTitle ?></label></legend>
+						<div id="mealsTree">
+							<ul>
+								<?php
+									$keys = array_keys($this->tags);
+												
+									$keyCnt = 1;
+									foreach($keys as $key){
+										$tagAnchor = '<li class="tags_list_item"><a href="'.$this->baseUrl.'/community?tag='.urlencode($key);
+										//if user view, add a user parameter
+										if($this->user_view) {
+											$tagAnchor = $tagAnchor.'&user='.urlencode($this->user_data['id']);
+										}
+										$tagAnchor = $tagAnchor.'">'.$key.'</a></li>';
+											
+										echo $tagAnchor;
+									}
+				
+								?>
+							</ul>
+						</div>
+						</fieldset>
+						</div>
+						<div id="mealsContent">
+						
+						<fieldset id="mealsFS" class="titledborder"><legend> <label><?php echo $this->contentTitle ?></label></legend>
+						<div id="meal">
+							<?php
+								if($this->recipe_data != null){
+									echo $this->render($this->baseUrl.'/meal.phtml');
+								}
+								//print a list of meals
+								else if($this->meals != null) {
+									echo '<ul>';
+//																			
+									foreach($this->meals as $meal){
+										$tagAnchor = '<li class="meal_list_item"><a href="'.$this->baseUrl.'/community?id='.urlencode($meal['id']);
+										if($this->user_view) {
+											$tagAnchor = $tagAnchor.'&user='.urlencode($this->user_data['id']);
+										}
+										$tagAnchor = $tagAnchor.'">'.$meal['title'].'</a>';
+										if(!$this->user_view) {
+											$tagAnchor = $tagAnchor.'<span class="add_meal_anchor"><a href="'.$this->baseUrl.'/copy?id='.urlencode($meal['id']).'">Add</a></span>';
+										}
+										
+										echo $tagAnchor;
+										
+										
+										echo '<div>';
+										foreach($meal['tags'] as $tag){
+											$tagAnchor = '<a href="'.$this->baseUrl.'/community?tag='.urlencode($tag);
+											//if user view, add a user parameter
+											if($this->user_view) {
+												$tagAnchor = $tagAnchor.'&user='.urlencode($this->user_data['id']);
+											}
+											$tagAnchor = $tagAnchor.'">'.$tag.'</a>';
+											
+											echo $tagAnchor;
+										}
+										
+										echo '</div></li>';
+									}
+									
+									echo '</ul>';
+								}
+							?>
+						</div>
+						</fieldset>
+					</div></div>
+		    
+ 	<?php include("footer.phtml"); ?>

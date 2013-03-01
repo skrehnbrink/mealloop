@@ -1,0 +1,86 @@
+
+
+Plain and simple, Meal Loop helps plan your meals.  By storing all your recipes with Meal Loop, you can save time and get more organized by having Meal Loop create a meal plan especially for you.  Whether you like your meals chosen completely by random, or if you like to eat chicken on Wednesday, Meal Loop allows you to customize your plan however you see fit.  Meal Loop also provides you with a shopping list that includes a consolidated listing of ingredients you need for the upcoming week.  The best part about Meal Loop is that it is completely free!  All you need to get started is a valid email address.  We also promise not to send you any unwanted mail or give your address away for our personal gain.
+
+
+
+
+Environment Setup
+=================
+
+Perform the following in order to get a working development environment setup.  These instructions
+include steps for setting up a personal HTTP Server and MySQL DB so that you can run your own
+local version of MealLoop.
+
+Installs
+
+	1.  Install Apache HTTP Server (without crypto) => http://httpd.apache.org/download.cgi
+			Notes:
+		 
+	2.  Install PHP 5.2.5 => http://www.php.net/downloads.php#v5
+			Notes:	Make sure you install the MySQL extension and PDO MySQL extension.  DO NOT 
+					install all of the extensions or Apache will complain.
+
+	3.  Install MySQL Community Server => http://dev.mysql.com/downloads/mysql/5.0.html
+			Notes:
+		
+	4.  Install MySQL GUI Tools => http://dev.mysql.com/downloads/gui-tools/5.0.html
+			Notes:
+		
+	5.  Install Eclipse 3.3.2 => http://www.eclipse.org/downloads/
+			Notes:  
+		
+	6.  Install the PDT PHP plugin for Eclipse => http://download.eclipse.org/tools/pdt/downloads/
+			Notes:  Install the plugin using Eclipse: Help > Software Updates > Find and Install...
+					PDT update site: http://download.eclipse.org/tools/pdt/updates/
+
+Eclipse Setup
+
+	1.  Launch Eclipse, go to: Window > Open Perspective > Other...
+	2.  Choose SVN Repository Exploring
+	3.  In the SVN Repository View, right click and select: New > Reposity Location...
+	4.  For the URL location, enter: http://svn.krehnbrink.com/mealloop, click Finish
+	5.  When prompted, enter password
+	6.  Right click on newly added Repository and click: Checkout...
+	7.  Select: Checkout as Project Created in the New Project Wizard, click Finish
+	8.  Click: Yes to checkout at the root of the repository, for the new project type, select PHP project
+	9.  Choose a project name (mealloop), and for the project location choose <apache install>/Apache2.2/mealloop
+	10. Click: Finish
+	
+MySQL Setup
+
+	1.  Launch MySQL Query Browser (GUI Tools), the login dialog should be displayed
+	2.  For Server Host enter: localhost, enter Username (root), and enter root password
+	3.  Right click in the Schemata tab, and choose: Create New Schema, enter: mealloop for the schema name
+	4.  Click: File > Open Script...
+	5.  Browse to: <apache install>/Apache2.2/mealloop/sql/mealloopSchema.sql
+	6.  Click Execute
+	7.  Open MySQL Administration, enter same login information
+	8.  Click: User Administration, Add New User
+	9.  For MySQL User, enter: mluser; for password, enter: abcdefgh0
+	10. Click Schema Privileges and add: SELECT, INSERT, UPDATE, DELETE privileges for the mealloop schemata
+
+Apache Setup
+
+	1.  Browse to the project root (<apache install>/Apache2.2/mealloop/)
+	2.  Copy the contents of the htdocs folder to the htdocs under <apache install>/Apache2.2
+	3.  Rename the <apache install>/Apache2.2/conf/httpd.conf to httpd.conf.bak
+	4.  Open <apache install>/Apache2.2/conf/httpd.conf
+	5.  Scroll to the LoadModule section, remove the # sign from: LoadModule rewrite_module modules/mod_rewrite.so
+	6.  Scroll to the section that starts with: <Directory "C:/Program Files/Apache Software Foundation/Apache2.2/htdocs">
+	7.  Insert the following above the </Directory> tag:
+			RewriteEngine on
+   	 		RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
+
+	
+   	 		
+To verify Mealloop is running locally, restart the web server, make sure mysql is running, and browse to: http://localhost/
+
+   	 		
+
+ 
+   	
+ 
+	
+
+	
